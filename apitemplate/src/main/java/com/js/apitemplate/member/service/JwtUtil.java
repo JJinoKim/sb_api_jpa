@@ -1,20 +1,23 @@
 package com.js.apitemplate.member.service;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Base64;
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.js.apitemplate.member.vo.MemberVo;
 
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.Date;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 
 @Component
@@ -29,8 +32,15 @@ public class JwtUtil {
     
     
     @Value("${spring.jwt.secret}")
-    private String SECRET_KEY;
+    private String SECRET_KEY ;
 
+    
+//    @PostConstruct
+//    protected void init() {
+//    	System.out.println("라라랄라");
+//    	SECRET_KEY = Base64.getEncoder().encodeToString(SECRET_KEY.getBytes());
+//    }
+    
     private Key getSigningKey(String secretKey) {
         byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);

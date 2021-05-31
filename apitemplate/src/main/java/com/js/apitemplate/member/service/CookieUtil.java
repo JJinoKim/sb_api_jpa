@@ -3,6 +3,9 @@ package com.js.apitemplate.member.service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CookieUtil {
 
 	public Cookie createCookie(String cookieName, String value) {
