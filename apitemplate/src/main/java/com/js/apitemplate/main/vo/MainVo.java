@@ -22,7 +22,7 @@ public class MainVo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long mbrNo;
+	private Long mainNo;
 	private String id;
 	private String name;
 	private int age;
