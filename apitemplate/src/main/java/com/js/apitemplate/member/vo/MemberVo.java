@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.js.apitemplate.member.config.UserRole;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +21,6 @@ import lombok.Setter;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "member")
 @Getter @Setter
 public class MemberVo {
@@ -39,6 +41,19 @@ public class MemberVo {
 	@NotBlank
 	private String modifyDate;		// 수정날짜
 	
+	@Column(name ="role")
+	@Enumerated(EnumType.STRING)
+	private UserRole role = UserRole.ROLE_NOT ;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="salt_id")
+	private SaltVo saltVo;
+	
+	
+	public MemberVo() {
+		
+	}
+	
 	public MemberVo(String mberId,String mberName,String mberPassword,String insertDate,String modifyDate ) {
 		this.mberId = mberId;
 		this.mberName = mberName;
@@ -46,10 +61,5 @@ public class MemberVo {
 		this.insertDate = insertDate;
 		this.modifyDate = modifyDate;
 	}
-	
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name ="salt_id")
-	private SaltVo saltVo;
 	
 }

@@ -29,11 +29,8 @@ public class JwtUtil {
     final static public String REFRESH_TOKEN_NAME = "refreshToken";
 
     
-    
-    
     @Value("${spring.jwt.secret}")
     private String SECRET_KEY ;
-
     
 //    @PostConstruct
 //    protected void init() {

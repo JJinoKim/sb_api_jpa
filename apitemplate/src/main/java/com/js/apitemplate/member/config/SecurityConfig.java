@@ -1,4 +1,4 @@
-package com.js.apitemplate.member.service;
+package com.js.apitemplate.member.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
